@@ -1,4 +1,6 @@
 import "./App.css";
+
+import HeaderNavbar from "./components/HeaderNavbar";
 import ProductScreen from "./components/ProductScreen";
 
 function App() {
@@ -28,7 +30,13 @@ function App() {
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     },
   ];
-  return <ProductScreen data={productsArr} />;
+
+  return (
+    <>
+      <HeaderNavbar />
+      <ProductScreen data={productsArr} />;
+    </>
+  );
 }
 
 export default App;
