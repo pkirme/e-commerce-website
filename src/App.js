@@ -2,6 +2,7 @@ import "./App.css";
 
 import HeaderNavbar from "./components/HeaderNavbar";
 import ProductScreen from "./components/ProductScreen";
+import CartContextProvider from "./store/CartContext/CartContextProvider";
 
 function App() {
   const productsArr = [
@@ -33,8 +34,10 @@ function App() {
 
   return (
     <>
-      <HeaderNavbar />
-      <ProductScreen data={productsArr} />;
+      <CartContextProvider>
+        <HeaderNavbar />
+        <ProductScreen data={productsArr} />;
+      </CartContextProvider>
     </>
   );
 }

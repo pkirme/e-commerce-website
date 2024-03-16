@@ -3,6 +3,10 @@ import { Modal, Button } from "react-bootstrap";
 import CartItems from "./CartItems";
 
 const CartModal = (props) => {
+  const orderHandler = () => {
+    alert("Thank you for purchase!");
+    props.handleClose();
+  };
   return (
     <Modal show={props.show} onHide={props.handleClose}>
       <Modal.Header closeButton>
@@ -15,7 +19,7 @@ const CartModal = (props) => {
         <Button variant="secondary" onClick={props.handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={props.handleClose}>
+        <Button variant="primary" onClick={orderHandler}>
           Order
         </Button>
       </Modal.Footer>

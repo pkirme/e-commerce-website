@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Navbar, Button, Nav } from "react-bootstrap";
 import CartModal from "./cart/CartModal";
+import CartContext from "../store/CartContext/CartContext";
 
 const HeaderNavbar = () => {
+  const cartCtx = useContext(CartContext);
+
+  const numberOfCartItems = cartCtx.itemList.reduce((num, item) => {
+    return num + item.amount;
+  }, 0);
+
   //Cart Modal State
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -21,7 +28,7 @@ const HeaderNavbar = () => {
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
           <Button type="submit" onClick={handleShow}>
-            Cart 0
+            Cart {numberOfCartItems}
           </Button>
           <CartModal show={show} handleClose={handleClose} />
         </Navbar.Collapse>

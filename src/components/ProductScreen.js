@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
+import CartContext from "../store/CartContext/CartContext";
 
 const ProductScreen = (props) => {
+  const cartCtx = useContext(CartContext);
+
+  const onClickHandler = (item) => {
+    const itemList = {
+      id: Math.random() * 10,
+      title: item.title,
+      imageUrl: item.imageUrl,
+      price: item.price,
+      amount: 1,
+    };
+
+    cartCtx.addToCart(itemList);
+    console.log(cartCtx.itemList);
+  };
+
   return (
     <Container className="mt-3">
       <Row className="g-4">
@@ -12,7 +28,13 @@ const ProductScreen = (props) => {
               <Card.Body style={{ backgroundColor: "#EEE9DD" }}>
                 <Container>
                   <Card.Title>${item.price}</Card.Title>
-                  <Button variant="primary" type="submit">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={() => {
+                      onClickHandler(item);
+                    }}
+                  >
                     Add To Cart
                   </Button>
                 </Container>
