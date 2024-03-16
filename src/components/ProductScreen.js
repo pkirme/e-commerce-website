@@ -7,7 +7,7 @@ const ProductScreen = (props) => {
 
   const onClickHandler = (item) => {
     const itemList = {
-      id: Math.random() * 10,
+      id: item.id,
       title: item.title,
       imageUrl: item.imageUrl,
       price: item.price,
@@ -23,7 +23,7 @@ const ProductScreen = (props) => {
       <Row className="g-4">
         {props.data.map((item) => (
           <Col md={3}>
-            <Card className="shadow-lg">
+            <Card className="shadow-lg" id={item.id}>
               <Card.Img variant="top" src={item.imageUrl} />
               <Card.Body style={{ backgroundColor: "#EEE9DD" }}>
                 <Container>

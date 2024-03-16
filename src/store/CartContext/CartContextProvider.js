@@ -8,7 +8,7 @@ const CartContextProvider = (props) => {
     console.log(item);
     setCart((prevItems) => {
       const existingItemIndex = cart.itemList.findIndex(
-        (cartrItem) => item.id === prevItems.id
+        (cartItem) => item.id === cartItem.id
       );
 
       const existingItem = prevItems.itemList[existingItemIndex];

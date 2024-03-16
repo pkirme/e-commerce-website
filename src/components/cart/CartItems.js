@@ -1,54 +1,51 @@
-import React from "react";
-import { Button, Card } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Table } from "react-bootstrap";
+import CartContext from "../../store/CartContext/CartContext";
 
 const CartItems = () => {
-  const cartElements = [
-    {
-      title: "Colors",
-      price: 100,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-      quantity: 2,
-    },
-    {
-      title: "Black and white Colors",
-      price: 50,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-      quantity: 3,
-    },
-    {
-      title: "Yellow and Black Colors",
-      price: 70,
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-      quantity: 1,
-    },
-  ];
+  const cartCtex = useContext(CartContext);
   return (
-    <>
-      {cartElements.map((item) => (
-        <Card key={item.id} className="mb-3" style={{ maxWidth: "100px" }}>
-          <div className="d-flex align-items-center ">
-            <Card.Img variant="top" src={item.imageUrl} alt={item.title} />
-            <div className="flex-grow-1">
-              <Card.Title>{item.title}</Card.Title>
-            </div>
-            <div className="flex-grow-1">
-              <Card.Text>Price: ${item.price}</Card.Text>
-            </div>
-            <div className="flex-grow-1">
-              <Button variant="danger" className="me-2">
+    <Table style={{ textAlign: "center" }}>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {cartCtex.itemList.map((item) => (
+          <tr key={item.id}>
+            <td>
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                style={{ maxWidth: "100px" }}
+              ></img>
+            </td>
+            <td>${item.price}</td>
+            <td>
+              <input
+                value={item.amount}
+                style={{
+                  maxWidth: "30px",
+                  textAlign: "center",
+                  borderColor: "#4CC6E4",
+                }}
+                readOnly
+              ></input>
+            </td>
+            <td>
+              <Button variant="danger" onClick="">
                 Remove
               </Button>
-            </div>
-            <div className="flex-grow-1">
-              <Button variant="success">Add</Button>
-            </div>
-          </div>
-        </Card>
-      ))}
-    </>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
   );
 };
 
