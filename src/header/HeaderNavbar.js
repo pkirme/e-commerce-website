@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Container, Navbar, Button, Nav } from "react-bootstrap";
-import CartModal from "./cart/CartModal";
+import CartModal from "../components/cart/CartModal";
 import CartContext from "../store/CartContext/CartContext";
+import CartIcon from "../components/cart/CartIcon";
 
 const HeaderNavbar = () => {
   const cartCtx = useContext(CartContext);
@@ -20,20 +21,24 @@ const HeaderNavbar = () => {
       bg="dark"
       expand="sm"
       variant="dark"
-      className="navbar navbar-expand-lg navbar-dark bg-dark"
+      className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
     >
       <Container>
         <Navbar.Brand>E-Commerce</Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#store">Store</Nav.Link>
+            <Nav.Link href="/Home">Home</Nav.Link>
+            <Nav.Link href="/Store">Store</Nav.Link>
             <Nav.Link href="/About">About</Nav.Link>
+            <Nav.Link href="/Contact">Contact Us</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
           <Button type="submit" onClick={handleShow}>
-            Cart {numberOfCartItems}
+            <span>
+              <CartIcon />
+            </span>
+            <span>{numberOfCartItems}</span>
           </Button>
           <CartModal show={show} handleClose={handleClose} />
         </Navbar.Collapse>

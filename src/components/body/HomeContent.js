@@ -37,7 +37,7 @@ const HomeContent = () => {
 
   return (
     <Container>
-      <Table style={{ textAlign: "center" }}>
+      <Table style={{ textAlign: "center", marginTop: "40px" }}>
         <thead>
           <tr>
             <th>Date</th>

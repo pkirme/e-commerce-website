@@ -1,15 +1,12 @@
 import React from "react";
-import HeaderNavbar from "../HeaderNavbar";
-import CartContextProvider from "../../store/CartContext/CartContextProvider";
-import HomeContent from "../HomeContent";
+import HomeContent from "../body/HomeContent";
+import HeadingHome from "../../header/HeadingHome";
 
 function Home() {
   return (
     <>
-      <CartContextProvider>
-        <HeaderNavbar />
-        <HomeContent />
-      </CartContextProvider>
+      <HeadingHome />
+      <HomeContent />
     </>
   );
 }
