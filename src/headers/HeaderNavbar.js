@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Container, Navbar, Button, Nav } from "react-bootstrap";
-import CartModal from "../components/cart/CartModal";
-import CartContext from "../store/CartContext/CartContext";
-import CartIcon from "../components/cart/CartIcon";
+import CartModal from "../cart/CartModal";
+import CartContext from "../../store/CartContext/CartContext";
+import CartIcon from "../cart/CartIcon";
+import "./HeaderNavbar.css";
 
 const HeaderNavbar = () => {
   const cartCtx = useContext(CartContext);
@@ -27,10 +29,26 @@ const HeaderNavbar = () => {
         <Navbar.Brand>E-Commerce</Navbar.Brand>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/Home">Home</Nav.Link>
-            <Nav.Link href="/Store">Store</Nav.Link>
-            <Nav.Link href="/About">About</Nav.Link>
-            <Nav.Link href="/Contact">Contact Us</Nav.Link>
+            <li>
+              <NavLink className="nav" to="/Home">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav" to="/Store">
+                Store
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav" to="/About">
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="nav" to="/Contact">
+                Contact Us
+              </NavLink>
+            </li>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">

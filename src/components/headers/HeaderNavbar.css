@@ -1,0 +1,9 @@
+li {
+  display: inline-block; /* Display list items horizontally */
+  margin-right: 20px;
+  text-decoration: none; /* Add spacing between items */
+}
+.nav {
+  text-decoration: none;
+  color: grey;
+}
