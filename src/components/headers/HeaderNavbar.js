@@ -49,13 +49,16 @@ const HeaderNavbar = () => {
                 Contact Us
               </NavLink>
             </li>
+            <li>
+              <NavLink className="nav" to="/Login">
+                Login
+              </NavLink>
+            </li>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
           <Button type="submit" onClick={handleShow}>
-            <span>
-              <CartIcon />
-            </span>
+            <span>Cart</span>
             <span>{numberOfCartItems}</span>
           </Button>
           <CartModal show={show} handleClose={handleClose} />

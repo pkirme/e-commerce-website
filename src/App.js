@@ -7,6 +7,7 @@ import ContactUs from "./components/pages/ContactUs";
 import CartContextProvider from "./store/CartContext/CartContextProvider";
 import HeaderNavbar from "./components/headers/HeaderNavbar";
 import Heading from "./components/headers/Heading";
+import Login from "./components/pages/Login";
 
 // const router = createBrowserRouter([
 //   { path: "/About", element: <About /> },
@@ -39,6 +40,10 @@ function App() {
 
           <Route path="/Contact">
             <ContactUs />
+          </Route>
+
+          <Route path='/Login'>
+            <Login/>
           </Route>
         </Switch>
 
