@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Container, Navbar, Button, Nav } from "react-bootstrap";
 import CartModal from "../cart/CartModal";
 import CartContext from "../../store/CartContext/CartContext";
-import CartIcon from "../cart/CartIcon";
+// import CartIcon from "../cart/CartIcon";
 import "./HeaderNavbar.css";
 
 const HeaderNavbar = () => {

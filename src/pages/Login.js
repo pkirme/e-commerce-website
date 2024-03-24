@@ -1,11 +1,14 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import AuthContext from "../store/authContext/AuthContext";
 
 const Login = () => {
   const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const authCtx = useContext(AuthContext);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -27,7 +30,10 @@ const Login = () => {
         }
       );
       if (response.ok) {
+        const data = await response.json();
+        authCtx.login(data.idToken);
         alert("You are welcome!!");
+
         history.replace("/Store");
       } else {
         throw new Error("Authentication Fail!!");

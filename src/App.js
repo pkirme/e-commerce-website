@@ -1,19 +1,13 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
-import About from "./components/pages/About";
-import Home from "./components/pages/Home";
-import Store from "./components/pages/Store";
-import ContactUs from "./components/pages/ContactUs";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Store from "./pages/Store";
+import ContactUs from "./pages/ContactUs";
 import CartContextProvider from "./store/CartContext/CartContextProvider";
 import HeaderNavbar from "./components/headers/HeaderNavbar";
 import Heading from "./components/headers/Heading";
-import Login from "./components/pages/Login";
-
-// const router = createBrowserRouter([
-//   { path: "/About", element: <About /> },
-//   { path: "/", element: <Home /> },
-//   { path: "/Store", element: <Store /> },
-// ]);
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -42,8 +36,8 @@ function App() {
             <ContactUs />
           </Route>
 
-          <Route path='/Login'>
-            <Login/>
+          <Route path="/Login">
+            <Login />
           </Route>
         </Switch>
 

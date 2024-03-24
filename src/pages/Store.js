@@ -1,5 +1,5 @@
 import React from "react";
-import ProductScreen from "../body/ProductScreen";
+import ProductScreen from "../components/body/ProductScreen";
 
 const Store = () => {
   const productsArr = [
