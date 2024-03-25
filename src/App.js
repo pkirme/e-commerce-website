@@ -8,8 +8,12 @@ import CartContextProvider from "./store/CartContext/CartContextProvider";
 import HeaderNavbar from "./components/headers/HeaderNavbar";
 import Heading from "./components/headers/Heading";
 import Login from "./pages/Login";
+import { useContext } from "react";
+import AuthContext from "./store/authContext/AuthContext";
 
 function App() {
+  const authCtx = useContext(AuthContext);
+  const isUserLoggedIn = authCtx.isLoggedIn;
   return (
     <>
       <CartContextProvider>
@@ -28,20 +32,21 @@ function App() {
             <About />
           </Route>
 
-          <Route path="/Store">
-            <Store />
-          </Route>
+          {isUserLoggedIn && (
+            <Route path="/Store">
+              <Store />
+            </Route>
+          )}
 
           <Route path="/Contact">
             <ContactUs />
           </Route>
-
-          <Route path="/Login">
-            <Login />
-          </Route>
+          {!isUserLoggedIn && (
+            <Route path="/Login">
+              <Login />
+            </Route>
+          )}
         </Switch>
-
-        {/* <RouterProvider router={router} /> */}
       </CartContextProvider>
     </>
   );

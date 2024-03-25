@@ -3,7 +3,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../store/authContext/AuthContext";
 
-const Login = () => {
+const Login = (props) => {
   const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -33,7 +33,7 @@ const Login = () => {
         const data = await response.json();
         authCtx.login(data.idToken);
         alert("You are welcome!!");
-
+        props.onClose();
         history.replace("/Store");
       } else {
         throw new Error("Authentication Fail!!");

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
 import CartItems from "./CartItems";
+import CartContext from "../../store/CartContext/CartContext";
 
 const CartModal = (props) => {
+  const cartCtx = useContext(CartContext);
   const orderHandler = () => {
     alert("Thank you for purchase!");
+    cartCtx.cartEmpty();
     props.handleClose();
   };
   return (

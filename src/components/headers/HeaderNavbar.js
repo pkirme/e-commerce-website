@@ -5,9 +5,15 @@ import CartModal from "../cart/CartModal";
 import CartContext from "../../store/CartContext/CartContext";
 // import CartIcon from "../cart/CartIcon";
 import "./HeaderNavbar.css";
+import AuthContext from "../../store/authContext/AuthContext";
+import Login from "../../pages/Login";
 
 const HeaderNavbar = () => {
   const cartCtx = useContext(CartContext);
+  const authCtx = useContext(AuthContext);
+  const isUserLoggedIn = authCtx.isLoggedIn;
+
+  const [showLogin, setShowLogin] = useState(false);
 
   const numberOfCartItems = cartCtx.itemList.reduce((num, item) => {
     return num + item.amount;
@@ -17,6 +23,19 @@ const HeaderNavbar = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const onLogoutHandler = () => {
+    authCtx.logOut();
+    cartCtx.cartEmpty();
+  };
+
+  const onLoginHandler = () => {
+    setShowLogin(true);
+  };
+
+  const onCloseHandler = () => {
+    setShowLogin(false);
+  };
 
   return (
     <Navbar
@@ -34,11 +53,14 @@ const HeaderNavbar = () => {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink className="nav" to="/Store">
-                Store
-              </NavLink>
-            </li>
+            {isUserLoggedIn && (
+              <li>
+                <NavLink className="nav" to="/Store">
+                  Store
+                </NavLink>
+              </li>
+            )}
+
             <li>
               <NavLink className="nav" to="/About">
                 About
@@ -49,14 +71,26 @@ const HeaderNavbar = () => {
                 Contact Us
               </NavLink>
             </li>
-            <li>
-              <NavLink className="nav" to="/Login">
-                Login
-              </NavLink>
-            </li>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
+          {!isUserLoggedIn && !showLogin && (
+            <Button className="mx-2" onClick={onLoginHandler} variant="success">
+              Login
+            </Button>
+          )}
+          <div> {showLogin && <Login onClose={onCloseHandler} />}</div>
+
+          {isUserLoggedIn && (
+            <Button
+              className="mx-2"
+              onClick={onLogoutHandler}
+              variant="success"
+            >
+              Logout
+            </Button>
+          )}
+
           <Button type="submit" onClick={handleShow}>
             <span>Cart</span>
             <span>{numberOfCartItems}</span>

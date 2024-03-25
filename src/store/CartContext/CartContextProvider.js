@@ -35,11 +35,16 @@ const CartContextProvider = (props) => {
     });
   };
 
-  const removeItem = (id) => {};
+  const removeItemHandler = (id) => {};
+
+  const cartEmptyHandler = () => {
+    setCart({ itemList: [], totalAmount: 0 });
+  };
   const cartContext = {
     itemList: cart.itemList,
     addToCart: addToCartHandler,
-    removeItem: removeItem,
+    removeItem: removeItemHandler,
+    cartEmpty: cartEmptyHandler,
     totalAmount: cart.totalAmount,
   };
   return (
