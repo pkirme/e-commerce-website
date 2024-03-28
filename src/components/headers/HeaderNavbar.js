@@ -3,17 +3,14 @@ import { NavLink } from "react-router-dom";
 import { Container, Navbar, Button, Nav } from "react-bootstrap";
 import CartModal from "../cart/CartModal";
 import CartContext from "../../store/CartContext/CartContext";
-// import CartIcon from "../cart/CartIcon";
+
 import "./HeaderNavbar.css";
 import AuthContext from "../../store/authContext/AuthContext";
-import Login from "../../pages/Login";
 
 const HeaderNavbar = () => {
   const cartCtx = useContext(CartContext);
   const authCtx = useContext(AuthContext);
   const isUserLoggedIn = authCtx.isLoggedIn;
-
-  const [showLogin, setShowLogin] = useState(false);
 
   const numberOfCartItems = cartCtx.itemList.reduce((num, item) => {
     return num + item.amount;
@@ -27,14 +24,6 @@ const HeaderNavbar = () => {
   const onLogoutHandler = () => {
     authCtx.logOut();
     cartCtx.cartEmpty();
-  };
-
-  const onLoginHandler = () => {
-    setShowLogin(true);
-  };
-
-  const onCloseHandler = () => {
-    setShowLogin(false);
   };
 
   return (
@@ -71,16 +60,15 @@ const HeaderNavbar = () => {
                 Contact Us
               </NavLink>
             </li>
+
+            {!isUserLoggedIn && (
+              <NavLink className="nav" to="/Login">
+                Login
+              </NavLink>
+            )}
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
-          {!isUserLoggedIn && !showLogin && (
-            <Button className="mx-2" onClick={onLoginHandler} variant="success">
-              Login
-            </Button>
-          )}
-          <div> {showLogin && <Login onClose={onCloseHandler} />}</div>
-
           {isUserLoggedIn && (
             <Button
               className="mx-2"

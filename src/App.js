@@ -10,44 +10,47 @@ import Heading from "./components/headers/Heading";
 import Login from "./pages/Login";
 import { useContext } from "react";
 import AuthContext from "./store/authContext/AuthContext";
+import { CartContextApiProvider } from "./store/CartContext/CartContextApi";
 
 function App() {
   const authCtx = useContext(AuthContext);
   const isUserLoggedIn = authCtx.isLoggedIn;
   return (
     <>
-      <CartContextProvider>
-        <HeaderNavbar />
-        <Heading />
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/Home" />
-          </Route>
-
-          <Route path="/Home">
-            <Home />
-          </Route>
-
-          <Route path="/About">
-            <About />
-          </Route>
-
-          {isUserLoggedIn && (
-            <Route path="/Store">
-              <Store />
+      <CartContextApiProvider>
+        <CartContextProvider>
+          <HeaderNavbar />
+          <Heading />
+          <Switch>
+            <Route path="/" exact>
+              <Redirect to="/Home" />
             </Route>
-          )}
 
-          <Route path="/Contact">
-            <ContactUs />
-          </Route>
-          {!isUserLoggedIn && (
-            <Route path="/Login">
-              <Login />
+            <Route path="/Home">
+              <Home />
             </Route>
-          )}
-        </Switch>
-      </CartContextProvider>
+
+            <Route path="/About">
+              <About />
+            </Route>
+
+            {isUserLoggedIn && (
+              <Route path="/Store">
+                <Store />
+              </Route>
+            )}
+
+            <Route path="/Contact">
+              <ContactUs />
+            </Route>
+            {!isUserLoggedIn && (
+              <Route path="/Login">
+                <Login />
+              </Route>
+            )}
+          </Switch>
+        </CartContextProvider>
+      </CartContextApiProvider>
     </>
   );
 }

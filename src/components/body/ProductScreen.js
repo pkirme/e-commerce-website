@@ -1,9 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Col, Container, Row, Card, Button } from "react-bootstrap";
 import CartContext from "../../store/CartContext/CartContext";
+import CartContextApi from "../../store/CartContext/CartContextApi";
 
 const ProductScreen = (props) => {
   const cartCtx = useContext(CartContext);
+  const cartApi = useContext(CartContextApi);
+  
+
+  useEffect(() => {
+    cartApi.fetchData();
+  }, []);
 
   const onClickHandler = (item) => {
     const itemList = {
@@ -13,9 +20,8 @@ const ProductScreen = (props) => {
       price: item.price,
       amount: 1,
     };
-
+    cartApi.addProduct(itemList);
     cartCtx.addToCart(itemList);
-    console.log(cartCtx.itemList);
   };
 
   return (

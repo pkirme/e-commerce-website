@@ -31,9 +31,10 @@ const Login = (props) => {
       );
       if (response.ok) {
         const data = await response.json();
-        authCtx.login(data.idToken);
+        console.log(data);
+        authCtx.login(data.email, data.idToken);
         alert("You are welcome!!");
-        props.onClose();
+
         history.replace("/Store");
       } else {
         throw new Error("Authentication Fail!!");
